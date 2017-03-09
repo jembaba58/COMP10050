@@ -8,10 +8,11 @@ void pointsOgre(struct players[]);
 void pointsElf(struct players[]);
 void pointsWizard(struct players[]);
 void slotType(struct slot[]);
+void createPlayers(struct players[]);
 void allocatePlayers(struct players[]);
 void abs(int a);
 
-struct player
+struct players
 {
 	char name[20];
 	char player_type[10];
@@ -31,38 +32,7 @@ struct slot
 
 int main(void)
 {
-	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
-	scanf("%d", &numplayers);
-	
-	int invalid=0, invalid1=0;
-	while(invalid==0)
-	{
-		if(numplayers>=0 && numplayers<=6)
-		{
-			while(invalid1==0)
-			{
-			for(i=0; i<numPlayers; i++)
-			{
-				//For each playerNumber, we ask for the the type and name.
-				printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters) :\n", &i);
-				scanf("%s\n", &players[i].name, &players[i].player_type);
-				invalid=1;
-				
-				if(players[i].player_type=="elf" || players[i].player_type=="human" || players[i].player_type=="ogre" || players[i].player_type=="wizard");
-				{
-					invalid1 = 1;
-				}
-				else
-				{
-					printf("Invalid player type.\n");
-				}
-			}
-		}
-		else
-		{
-			printf("Invalid number of players\n");
-		}
-	}
+
 	
 	
 	
@@ -181,6 +151,41 @@ void pointsWizard(struct players[])
 		
 }
 
-
+void createPlayers(struct players[])
+{
+	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
+	scanf("%d", &numplayers);
+	
+	int invalid=0, invalid1=0;
+	while(invalid==0)
+	{
+		if(numplayers>=0 && numplayers<=6)
+		{
+			while(invalid1==0)
+			{
+			for(i=0; i<numPlayers; i++)
+			{
+				//For each playerNumber, we ask for the the type and name.
+				printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters) :\n", &i);
+				scanf("%s\n", &players[i].name, &players[i].player_type);
+				invalid=1;
+				
+				if(players[i].player_type=="elf" || players[i].player_type=="human" || players[i].player_type=="ogre" || players[i].player_type=="wizard");
+				{
+					invalid1 = 1;
+				}
+				else
+				{
+					printf("Invalid player type.\n");
+				}
+			}
+		}
+		else
+		{
+			printf("Invalid number of players\n");
+		}
+	}
+}
+	
 
 
