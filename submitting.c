@@ -29,6 +29,39 @@ struct slot
 	char type[20]; //The type of a slot could be: Level Ground, Hill or City.
 };
 
+int main(void)
+{
+	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
+	scanf("%d", &numplayers);
+	
+	if(numplayers>=0 && numplayers<=6)
+	{
+		for(i=0; i<numPlayers; i++)
+		{
+			//For each playerNumber, we ask for the the type and name.
+			printf("Please select the name and type for player %d:\n", &i);
+			scanf("%s\n", &players[i].name, &players[i].player_type);
+		}
+	}
+	else
+	{
+		printf("Invalid");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	return 0;
+}
+
 void pointsHuman(struct players[])
 {
 	int smartness, strength, skill, luck, dexterity;
