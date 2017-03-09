@@ -34,18 +34,23 @@ int main(void)
 	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
 	scanf("%d", &numplayers);
 	
-	if(numplayers>=0 && numplayers<=6)
+	int invalid=0;
+	while(invalid==0)
 	{
-		for(i=0; i<numPlayers; i++)
+		if(numplayers>=0 && numplayers<=6)
 		{
-			//For each playerNumber, we ask for the the type and name.
-			printf("Please select the name and type for player %d:\n", &i);
-			scanf("%s\n", &players[i].name, &players[i].player_type);
+			for(i=0; i<numPlayers; i++)
+			{
+				//For each playerNumber, we ask for the the type and name.
+				printf("Please select the name and type for player %d:\n", &i);
+				scanf("%s\n", &players[i].name, &players[i].player_type);
+				invalid=1;
+			}
 		}
-	}
-	else
-	{
-		printf("Invalid");
+		else
+		{
+			printf("Invalid\n");
+		}
 	}
 	
 	
