@@ -72,18 +72,22 @@ void pointsOgre(struct players[])
 	{
 		if(players[i].player_type = "Ogre")
 		{
-				players[i].strength = 1 +(rand()%80);
-				
-				players[i].dexterity = 1 +(rand()%80);
+			players[i].strength = (rand()%80);
+			players[i].dexterity = (rand()%80);
+			players[i].luck = (rand()%50);
+			players[i].smartness = (rand()%20);
+			sum = players[i].luck + players[i].smartness;
 			
-					do while(sum <= 50)
-					{
-						players[i].luck = 1 +(rand()%100);
-						
-						players[i].smartness = 1 +(rand()%20);
-						
-						sum = players[i].luck + players[i].smartness;
-					}
+			check = 1;
+			while(check == 1){
+				if(players[i].luck + players[i].smartness > 50){
+					players[i].luck = rand()%50;
+					players[i].smartness = rand()%20;
+				}
+				else{
+					check = 0;
+				}
+			}
 		}
 	}
 	
