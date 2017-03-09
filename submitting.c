@@ -12,7 +12,7 @@ void createPlayers(struct players[]);
 void allocatePlayers(struct players[]);
 void abs(int a);
 
-int numplayers;
+int numplayers, numslots;
 
 struct players
 {
@@ -35,7 +35,6 @@ struct slot
 int main(void)
 {
 	createPlayers();
-	
 	
 	
 	
@@ -189,5 +188,93 @@ void createPlayers(struct players[])
 	}
 }
 	
+void allocatePlayers(struct players[]);
+{
+	printf("Please select a number of slots (max 20):\n");
+	scanf("%d", &numslots);		
+	
+	int i, j;
+	int checked[numplayers];
+	
+	for(i=0; i<slotsNumber; i++)
+	{
+		k = rand()%(numslots-1);
+		checked[i] = k;
+		strcpy(players.position[k], players[i].name);
+	}
+	
+	for(i=0; i<numslots-1; i++)
+	{
+		j=i+1;
+		while(j<numslots)
+		{
+			if(checked[i] == checked[j])
+			{
+				for(i=0; i<numslots; i++)
+				{
+					k = rand()%(numslots-1);
+					checked[i] = k;
+					strcpy(players.position[k], players[i].name);
+				}
+				i=-1, j=numslots; //return to start of all loops condition
+			}
+			else{
+				j++;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 
-
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
