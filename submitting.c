@@ -12,6 +12,8 @@ void createPlayers(struct players[]);
 void allocatePlayers(struct players[]);
 void abs(int a);
 
+int numplayers;
+
 struct players
 {
 	char name[20];
