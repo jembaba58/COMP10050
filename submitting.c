@@ -11,7 +11,7 @@ void slotType(struct slot[]);
 void allocatePlayers(struct players[]);
 void abs(int a);
 
-struct playerFields
+struct player
 {
 	char name[20];
 	char player_type[10];
