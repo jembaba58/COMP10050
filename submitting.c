@@ -34,7 +34,7 @@ struct slot
 
 int main(void)
 {
-
+	createPlayers();
 	
 	
 	
