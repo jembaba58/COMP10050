@@ -24,7 +24,11 @@ struct playerFields
 	int position;
 };
 
-
+struct slot
+{
+	char type[20]; //The type of a slot could be: Level Ground, Hill or City. 
+	int num;
+}
 
 
 
