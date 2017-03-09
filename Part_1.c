@@ -1,12 +1,13 @@
 # include <stdio.h>
 # include <stdlib.h>
+# include <time.h>
 //Function Prototypes
-void pointsHuman(struct players[]);
-void pointsOgre(struct players[]);
-void pointsElf(struct players[]);
-void pointsWizard(struct players[]);
-void slotType(struct slot[]);
-void allocatePlayers(struct players[]);
+void pointsHuman(struct players[], int numPlayers);
+void pointsOgre(struct players[], int numPlayers);
+void pointsElf(struct players[], int numPlayers);
+void pointsWizard(struct players[], int numPlayers);
+void slotType(struct slot[], int numSlots);
+void allocatePlayers(struct players[], int numPlayers);
 void abs(int a);
 
 struct player
@@ -25,8 +26,7 @@ struct player
 struct slot
 {
 	char type[20]; //The type of a slot could be: Level Ground, Hill or City. 
-	int num;
-}
+};
 
 int main()
 {
@@ -34,7 +34,7 @@ int main()
 	struct slot slots[19]; // array of slots
 	int direction;
 	int i;
-	int numPlayers, attkd;
+	int numPlayers, numSlots, attkd;
 	int min;
 	int attkr;
 	
@@ -48,11 +48,19 @@ int main()
 	{
 		//For each playerNumber, we ask for the the type and name.
 		printf("Please select the name and type for player %d:\n", &i);
-		scanf("%s\n", &players[i].name, &players[i].player_type);
+		scanf("%s %s\n", &players[i].name, &players[i].player_type);
 	}
+	void pointsHuman(players[], numPlayers)
+	void pointsOgre(players[], numPlayers)
+	void pointsElf(players[], numPlayers)
+	void pointsWizard(players[], numPlayers)
+	
+	printf("Please specify the number of slots");
+	scanf("%d", &numSlots);
+	void slotType(slots[], numSlots)
 	
 	//Call the function to allocate the players to the 20 slots
-	void allocatePlayers(players[])
+	void allocatePlayers(players[], numPlayers)
 	
 	for(i=0; i<num_players; i++)
 	{
@@ -107,7 +115,7 @@ int main()
 							// Ask for the number of the attacker to be specified.
 							printf("Which player will be the attacker: ");
 							scanf("%d", &attkr);
-							min = 19;
+							min = numSlots;
 							
 							//Find the closest player(The player of the shortest distance in the array of slots).
 							for(i=0; i<numPlayers; i++)
@@ -131,15 +139,22 @@ int main()
 							{
 								players[attkd].life_pts -= players[attkd].strength*0.3;
 							}
+			
+							printf("Current player details are:\n")
+							printf("Player Name \t Player Type \t Life Points")
+							for(i=0; i < numPlayers; i++)
+							{
+								printf("%s \t %s \t %d", &players[i].name, &players[i].type, &&players[i].life_points);
+							}
 							
 					
 }
 
-void slotType(struct slot[])
+void slotType(struct slot[], int numSlots)
 {
 	int i, j;
 	
-	for (i=0; i < 20; i++).
+	for (i=0; i < numSlots; i++)
 	{
         j = 1 + rand() % 3; //j selects a random position between 1 and 3.
 	}
@@ -160,11 +175,10 @@ void slotType(struct slot[])
 //If the player is a human, all his/her capabilities should be > 0
 //Also, the total sum of the capabilities should be < 300.
 
-void pointsHuman(struct players[])
+void pointsHuman(struct players[], int numPlayers)
 {
 	int smartness, strength, skill, luck, dexterity;
 	int sum;
-	int numPlayers;
 	
 	for(i=0; i<numPlayers; i++)
 	{
@@ -179,7 +193,7 @@ void pointsHuman(struct players[])
 						
 							players[i].skill = 1 +(rand()%100);
 						
-							players[i].dexterity = 1 +(rand()%100);
+							players[i].luck = 1 +(rand()%100);
 						
 							players[i].dexterity = 1 +(rand()%100);
 							
@@ -190,7 +204,7 @@ void pointsHuman(struct players[])
 	
 }
 
-void pointsOgre(struct players[])
+void pointsOgre(struct players[], int numPlayers)
 {
 	int smartness, strength, skill = 0, luck, dexterity;
 	
@@ -204,7 +218,7 @@ void pointsOgre(struct players[])
 			
 					do while(sum <= 50)
 					{
-						players[i].luck = 1 +(rand()%100);
+						players[i].luck = 1 +(rand()%50); //50 it should be!
 						
 						players[i].smartness = 1 +(rand()%20);
 						
@@ -216,7 +230,7 @@ void pointsOgre(struct players[])
 	
 }
 
-void pointsElf(struct players[])
+void pointsElf(struct players[], int numPlayers)
 {
 	int smartness, strength, skill = 0, luck, dexterity;
 	
@@ -237,7 +251,7 @@ void pointsElf(struct players[])
 	
 }
 
-void pointsWizard(struct players[])
+void pointsWizard(struct players[], int numPlayers)
 {
 	int smartness, strength, skill, luck, dexterity;
 	
@@ -256,18 +270,18 @@ void pointsWizard(struct players[])
 	}
 		
 }
-void allocatePlayers(struct players[])
+void allocatePlayers(struct players[], int numPlayers)
 {
-	int chosen[19];
-	int array[5]; //for 6 random numbers between 1 and 20 
+	int chosen[numSlots - 1];
+	int array[5]; //for 6 random numbers between 1 and numSlots
     int i, j;
 	
-    for (i = 0; i < 20; i++){
-		chosen[i] = 0; }      //initialise array of 20 integers, all = 0
+    for (i = 0; i < numSlots; i++){
+		chosen[i] = 0; }      //initialise array of numSlots integers, all = 0
      
     for (i = 0; i < 6; i++)
     {
-        j = 1 + (rand () % 20);
+        j = 1 + (rand () % numSlots);
         if (chosen[j] = 1)
             i--;          //already chosen so try again
         else
@@ -278,7 +292,7 @@ void allocatePlayers(struct players[])
         }
      }
 	 
-	for(i=0; i < 6; i++)
+	for(i=0; i < numPlayers; i++)
 	{
 		players[i].position = array[i];
 	}
