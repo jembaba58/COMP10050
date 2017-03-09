@@ -39,21 +39,26 @@ void pointsHuman(struct players[])
 	{
 		if(players[i].player_type ="Human")
 		{
-				do while(sum < 300)
-					{
-	
-							players[i].smartness = 1 +(rand()%100);
-						
-							players[i].strength = 1 +(rand()%100);
-						
-							players[i].skill = 1 +(rand()%100);
-						
-							players[i].dexterity = 1 +(rand()%100);
-						
-							players[i].dexterity = 1 +(rand()%100);
-							
-							sum = players[i].smartness + players[i].strength + players[i].skill + players[i].luck + players[i].dexterity;
-					}
+			players[i].smartness = 1 +(rand()%100);
+			players[i].strength = 1 +(rand()%100);
+			players[i].skill = 1 +(rand()%100);
+			players[i].dexterity = 1 +(rand()%100);
+			players[i].dexterity = 1 +(rand()%100);
+			sum = players[i].smartness + players[i].strength + players[i].skill + players[i].luck + players[i].dexterity;
+			
+			int check = 1;
+			while(check == 1){
+				if(human.dexterity + human.luck + human.magicSkills + human.smartness + human.strength >=300){
+					players[i].smartness = rand()%100 + 1;
+					players[i].strength = rand()%100 + 1;
+					players[i].skill = rand()%100 + 1;
+					players[i].dexterity = rand()%100 + 1;
+					players[i].luck = rand()%100 + 1;
+				}
+				else{
+					check = 0;
+				}
+			}
 		}
 	}
 	
