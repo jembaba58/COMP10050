@@ -36,28 +36,50 @@ int main(void)
 {
 	createPlayers();
 	
+	int move;
+	
 	for(i=0; i<numplayers; i++)
 	{
 		
 		// Give the option to move players to adjacent slots.
-		printf("Player %d is in slot type : %s\n", i, slots[players[i].position]);
+		printf("Player %d is in slot type : %s\n", i+1, slots[players[i].position]);
 		//Displaying the types of adjacent slots.
 		printf("Previous slot is of type %s and next slot is of type %s", slots[players[i].position - 1], slots[players[i].position + 1]);
 		
 		if(checked[i] == 0)
 		{
-			printf("Player %d: Enter 1 to move to the next slot, 3 to attack the closest player, or 4 to do nothing.\n", i);
+			printf("Player %d: Enter 1 to move to the next slot, or 3 to attack the closest player.\n", i+1);
 		}
 		else if(checked[i] == 19)
 		{
-			printf("Player %d: Enter 2 to move to the previous slot, 3 to attack the closest player, or 4 to do nothing.\n", i);
+			printf("Player %d: Enter 2 to move to the previous slot, or 3 to attack the closest player.\n", i+1);
 		}
 		else
 		{
-			printf("Player %d: Enter 1 to move to the next slot, 2 to move to the previous slot, 3 to attack the closest player, or 4 to do nothing.\n", i);
+			printf("Player %d: Enter 1 to move to the next slot, 2 to move to the previous slot, or 3 to attack the closest player.\n", i+1);
 		}
 		
+		scanf("%d", &move);
 		
+		if(move == 1)
+		{
+			
+		}
+		
+		else if(move == 2)
+		{
+			
+		}
+		
+		else if(move == 3)
+		{
+			
+		}
+		
+		else
+		{
+			
+		}
 	
 	
 	
