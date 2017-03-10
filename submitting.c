@@ -48,7 +48,7 @@ int main(void)
 	return 0;
 }
 
-void pointsHuman(struct players[])
+void pointsHuman(struct player players[])
 {
 	int i;
 	int smartness, strength, skill, luck, dexterity;
@@ -85,7 +85,7 @@ void pointsHuman(struct players[])
 	
 }
 
-void pointsOgre(struct players[])
+void pointsOgre(struct player players[])
 {
 	int smartness, strength, skill = 0, luck, dexterity;
 	int i;
@@ -119,7 +119,7 @@ void pointsOgre(struct players[])
 	
 }
 
-void pointsElf(struct players[])
+void pointsElf(struct player players[])
 {
 	int smartness, strength, skill = 0, luck, dexterity;
 	int i;
@@ -137,7 +137,7 @@ void pointsElf(struct players[])
 	
 }
 
-void pointsWizard(struct players[])
+void pointsWizard(struct player players[])
 {
 	int smartness, strength, skill, luck, dexterity;
 	int i;
@@ -155,7 +155,7 @@ void pointsWizard(struct players[])
 		
 }
 
-void createPlayers(struct players[])
+void createPlayers(struct player players[])
 {
 	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
 	scanf("%d", &numplayers);
@@ -192,7 +192,7 @@ void createPlayers(struct players[])
 	}
 }
 	
-void allocatePlayers(struct players[]);
+void allocatePlayers(struct player players[]);
 {
 	printf("Please select a number of slots (max 20):\n");
 	scanf("%d", &numslots);		
@@ -232,7 +232,7 @@ void allocatePlayers(struct players[]);
 
 }
 	
-void slotType(struct slot[])
+void slotType(struct slot slots[])
 {
 	int i, j;
 	
