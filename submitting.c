@@ -259,7 +259,7 @@ void slotType(struct slot[])
 
 void makeMove(struct player players[], struct slot slots[])
 {	
-	int move, invalid2;
+	int move, invalid2, invalid3;
 	int attackNumber, attackPlayer;
 	int checked[numplayers], checked1[numplayers];
 	int swap;
@@ -386,25 +386,31 @@ void makeMove(struct player players[], struct slot slots[])
 						}	
 					}	
 				}
-			
-				if(checkArr[0] == checkArr[1]){
-					printf("Would you like to attack %s (enter 1) or %s (enter 2) : ", players.position[checked1[0]], players.position[checked1[1]]);
-					scanf("%d", &attackNumber);
-					if(attackNumber == 1){
+				
+				invalid3 = 0;
+				while(invalid3 == 0)
+				{
+					if(checkArr[0] == checkArr[1]){
+						printf("Would you like to attack %s (enter 1) or %s (enter 2) : ", players.position[checked1[0]], players.position[checked1[1]]);
+						scanf("%d", &attackNumber);
+						if(attackNumber == 1){
+							attackPlayer = 0;
+							printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
+							invalid3 = 1;
+						}
+						else if(attackNumber == 2){
+							attackPlayer = 1;
+							printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
+							invalid3 = 1;
+						}
+						else{
+							printf("Invalid"\n\n);
+						}
+					}
+					else{
 						attackPlayer = 0;
 						printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 					}
-					else if(attackNumber == 2){
-						attackPlayer = 1;
-						printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
-					}
-					else{
-						printf("Invalid"\n\n);
-					}
-				}
-				else{
-					attackPlayer = 0;
-					printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 				}
 		
 				if(players[attkd].strength <= 70)
