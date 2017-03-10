@@ -36,7 +36,7 @@ int main(void)
 {
 	srand(time(NULL)); //start timer for rand function
 
-	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : ");
+	printf("\n\nPlease enter the number of players you would like to enter into the game (Maximum 6) : ");
 	scanf("%d", &numplayers);
 
 	struct player players[numplayers];
@@ -53,7 +53,7 @@ int main(void)
 				for(i=0; i<numplayers; i++)
 				{
 					//For each playerNumber, we ask for the the type and name.
-					printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters and in the format: player name player type) :\n", i+1);
+					printf("\nPlease enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters and in the format: player name player type) :\n", i+1);
 					scanf("%s %s", players[i].name, players[i].player_type);
 
 					//check if what the user inputted is valid
@@ -76,7 +76,7 @@ int main(void)
 		}
 	}
 
-	printf("Please select a number of slots (max 20):\n");
+	printf("\nPlease select a number of slots (max 20):\n");
 	scanf("%d", &numslots);
 
 	struct slot slots[numslots];
@@ -168,7 +168,6 @@ void pointsHuman(struct player players[])
 
 void pointsOgre(struct player players[])
 {
-	printf("\nworking\n");
 	int i, sum;
 
 	for(i=0; i<numplayers; i++)
@@ -204,7 +203,6 @@ void pointsOgre(struct player players[])
 
 void pointsElf(struct player players[])
 {
-	printf("\nworking\n");
 	int i;
 
 	for(i=0; i<numplayers; i++)
@@ -223,7 +221,6 @@ void pointsElf(struct player players[])
 
 void pointsWizard(struct player players[])
 {
-	printf("\nworking\n");
 	int i;
 
 	for(i=0; i<numplayers; i++)
@@ -268,7 +265,6 @@ void slotType(struct slot slots[])
 
 void makeMove(struct player players[], struct slot slots[])
 {
-	printf("\nMake move working\n");
 	int move, invalid2, invalid3;
 	int attackNumber, attackPlayer;
 	int checked1[numplayers], checkArr[numplayers];
@@ -283,7 +279,7 @@ void makeMove(struct player players[], struct slot slots[])
 		while(invalid2 == 0)
 		{
 			//tell the player what number and type of slot they are in
-			printf("Player %d is in slot number %d and slot type : %s\n", gameEnd+1, players[gameEnd].position, slots[players[gameEnd].position].type);
+			printf("\n\nPlayer %d is in slot number %d and slot type : %s\n", gameEnd+1, players[gameEnd].position, slots[players[gameEnd].position].type);
 
 			//if player is in a slot where they cannot move either forwards or backwards don't allow them to do so
 			if(players[gameEnd].position == 0)
@@ -372,11 +368,11 @@ void makeMove(struct player players[], struct slot slots[])
 				{
 					if(players[gameEnd].position > players[i].position)
 					{
-						checkArr[i] = players[gameEnd].position - players[gameEnd].position;
+						checkArr[i] = players[gameEnd].position - players[i].position;
 					}
 					else if(players[gameEnd].position < players[i].position)
 					{
-						checkArr[i] = players[gameEnd].position - players[gameEnd].position;
+						checkArr[i] = players[i].position - players[gameEnd].position;
 					}
 					else
 					{
@@ -430,21 +426,22 @@ void makeMove(struct player players[], struct slot slots[])
 						scanf("%d", &attackNumber);
 						if(attackNumber == 1){
 							attackPlayer = 1;
-							printf("You have attacked %s.\n\n", players[num].name);
+							printf("You have attacked %s.", players[num].name);
 							invalid3 = 1;
 						}
 						else if(attackNumber == 2){
 							attackPlayer = 2;
-							printf("You have attacked %s.\n\n", players[num1].name);
+							printf("You have attacked %s.", players[num1].name);
 							invalid3 = 1;
 						}
 						else{
-							printf("Invalid\n\n");
+							printf("Invalid");
 						}
 					}
 					else{
 						attackPlayer = 1;
-						printf("You have attacked %s.\n\n", players[num].name);
+						printf("You have attacked %s.", players[num].name);
+						invalid3 = 1;
 					}
 				}
 
@@ -476,7 +473,7 @@ void makeMove(struct player players[], struct slot slots[])
 		}
 	}
 	//print out player's names, types and life points at end of game
-	printf("\n\n");
+	printf("\n");
 	for(i=0; i < numplayers; i++)
 	{
 		printf("%s (%s, %d)\n", players[i].name, players[i].player_type, players[i].life_pts);
