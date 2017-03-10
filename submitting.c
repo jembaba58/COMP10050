@@ -4,12 +4,12 @@
 #include <time.h>
 
     //Function Prototype
-void pointsHuman(struct player players[], int numPlayers);
-void pointsOgre(struct player players[], int numPlayers);
-void pointsElf(struct player players[], int numPlayers);
-void pointsWizard(struct player players[], int numPlayers);
-void slotType(struct slot slots[], int numSlots);
-void allocatePlayers(struct player players[], int numSlots, int numPlayers);
+void pointsHuman(struct player players[]);
+void pointsOgre(struct player players[]);
+void pointsElf(struct player players[]);
+void pointsWizard(struct player players[]);
+void slotType(struct slot slots[]);
+void allocatePlayers(struct player players[]);
 int abs(int a);
 
 int numplayers, numslots;
