@@ -403,7 +403,8 @@ void makeMove(struct player players[], struct slot slots[])
 					}
 				}
 				else{
-					printf("You have attacked %s.\n\n", player.position[checked1[0]]);
+					attackPlayer = 0;
+					printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 				}
 		
 				if(players[attkd].strength <= 70)
