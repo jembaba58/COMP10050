@@ -412,15 +412,23 @@ void makeMove(struct player players[], struct slot slots[])
 						printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 					}
 				}
-		
-				if(players[attkd].strength <= 70)
+				
+				for(d=0; d<numplayers; d++)
 				{
-					players[attkd].life_pts -= players[attkd].strength*0.5;
+					if(checked1[attacked] == checked[d])
+					{
+						num = d;
+					}
+				}
+				
+				if(players[num].strength <= 70)
+				{
+					players[num].life_pts -= players[num].strength*0.5;
 				}
 	
-				else if(players[attkd].strength > 70)
+				else if(players[num].strength > 70)
 				{
-					players[attkd].life_pts -= players[attkd].strength*0.3;
+					players[num].life_pts -= players[num].strength*0.3;
 				}
 				invalid2 = 1;
 			}
@@ -432,7 +440,7 @@ void makeMove(struct player players[], struct slot slots[])
 	}
 	for(i=0; i < numPlayers; i++)
 	{
-		printf("%s \t %s \t %d", &players[i].name, &players[i].player_type, &players[i].life_pts);
+		printf("%s \t %s \t %d\n", &players[i].name, &players[i].player_type, &players[i].life_pts);
 	}
 }	
 	
