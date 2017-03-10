@@ -283,7 +283,7 @@ void makeMove(struct player players[], struct slot slots[])
 		while(invalid2 == 0)
 		{
 			//tell the player what number and type of slot they are in
-			printf("Player %d is in slot number %d and slot type : %s\n", gameEnd+1, player[gameEnd].position, slots[players[gameEnd].position].type);
+			printf("Player %d is in slot number %d and slot type : %s\n", gameEnd+1, players[gameEnd].position, slots[players[gameEnd].position].type);
 
 			//if player is in a slot where they cannot move either forwards or backwards don't allow them to do so
 			if(players[gameEnd].position == 0)
