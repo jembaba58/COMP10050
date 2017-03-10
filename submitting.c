@@ -64,11 +64,57 @@ int main(void)
 		if(move == 1)
 		{
 			players[i].position = players[i].position + 1;
+			
+			if(slots[players[i].position].type == "Hill")
+			{
+				if(players[i].dexterity < 50)
+				{
+					players[i].strength -=10;
+				}
+				else if(players[i].dexterity >= 60)
+				{
+					players[i].strength +=10;
+				}
+			}
+			else if(slots[players[i].position].type == "City")
+			{
+				if(players[i].smartness > 60)
+				{
+					players[i].skill +=10;
+				}
+				else if(players[i].smartness <= 50)
+				{
+					players[i].dexterity -=10;
+				}
+			}
 		}
 		
 		else if(move == 2)
 		{
 			players[i].position = players[i].position - 1;
+			
+			if(slots[players[i].position].type == "Hill")
+			{
+				if(players[i].dexterity < 50)
+				{
+					players[i].strength -=10;
+				}
+				else if(players[i].dexterity >= 60)
+				{
+					players[i].strength +=10;
+				}
+			}
+			else if(slots[players[i].position].type == "City")
+			{
+				if(players[i].smartness > 60)
+				{
+					players[i].skill +=10;
+				}
+				else if(players[i].smartness <= 50)
+				{
+					players[i].dexterity -=10;
+				}
+			}
 		}
 		
 		else if(move == 3)
