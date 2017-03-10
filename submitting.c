@@ -9,14 +9,13 @@ void pointsOgre(struct player players[]);
 void pointsElf(struct player players[]);
 void pointsWizard(struct player players[]);
 void slotType(struct slot slots[]);
-void allocatePlayers(struct player players[]);
 int abs(int a);
 void makeMove(struct player players[], struct slot slots[]);
 
 int numplayers, numslots;
 int checked[];
 
-struct players
+struct player
 {
 	char name[20];
 	char player_type[10];
@@ -36,12 +35,87 @@ struct slot
 
 int main(void)
 {
+	srand(time(NULL));
+	
+	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
+	scanf("%d", &numplayers);
+	
+	struct player players[numplayers];
+	
+	int i;
+	int invalid=0, invalid1=0;
+	while(invalid==0)
+	{
+		if(numplayers>=0 && numplayers<=6)
+		{
+			while(invalid1==0)
+			{
+			for(i=0; i<numPlayers; i++)
+			{
+				//For each playerNumber, we ask for the the type and name.
+				printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters) :\n", &i);
+				scanf("%s\n", &players[i].name, &players[i].player_type);
+				invalid=1;
+				
+				if(players[i].player_type=="elf" || players[i].player_type=="human" || players[i].player_type=="ogre" || players[i].player_type=="wizard");
+				{
+					invalid1 = 1;
+				}
+				else
+				{
+					printf("Invalid player type.\n");
+				}
+			}
+		}
+		else
+		{
+			printf("Invalid number of players\n");
+		}
+	}
+	
+	printf("Please select a number of slots (max 20):\n");
+	scanf("%d", &numslots);
+
+	struct slot slots[numslots];	
+	
+	int i, j, k;
+	int checked[numplayers];
+	
+	for(i=0; i<slotsNumber; i++)
+	{
+		k = rand()%(numslots-1);
+		checked[i] = k;
+		strcpy(players.position[k], players[i].name);
+	}
+	
+	for(i=0; i<numslots-1; i++)
+	{
+		j=i+1;
+		while(j<numslots)
+		{
+			if(checked[i] == checked[j])
+			{
+				for(i=0; i<numslots; i++)
+				{
+					k = rand()%(numslots-1);
+					checked[i] = k;
+					strcpy(players.position[k], players[i].name);
+				}
+				i=-1, j=numslots; //return to start of all loops condition
+			}
+			else{
+				j++;
+			}
+		}
+	}
+	
+	
+	
+	
 	pointsHuman();
 	pointsOgre();
 	pointsElf();
 	pointsWizard();
-	createPlayers();
-	allocatePlayers();
 	slotsType();
 	makeMove();
 	
@@ -155,83 +229,6 @@ void pointsWizard(struct player players[])
 		
 }
 
-void createPlayers(struct player players[])
-{
-	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
-	scanf("%d", &numplayers);
-	
-	int i;
-	int invalid=0, invalid1=0;
-	while(invalid==0)
-	{
-		if(numplayers>=0 && numplayers<=6)
-		{
-			while(invalid1==0)
-			{
-			for(i=0; i<numPlayers; i++)
-			{
-				//For each playerNumber, we ask for the the type and name.
-				printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters) :\n", &i);
-				scanf("%s\n", &players[i].name, &players[i].player_type);
-				invalid=1;
-				
-				if(players[i].player_type=="elf" || players[i].player_type=="human" || players[i].player_type=="ogre" || players[i].player_type=="wizard");
-				{
-					invalid1 = 1;
-				}
-				else
-				{
-					printf("Invalid player type.\n");
-				}
-			}
-		}
-		else
-		{
-			printf("Invalid number of players\n");
-		}
-	}
-}
-	
-void allocatePlayers(struct player players[]);
-{
-	printf("Please select a number of slots (max 20):\n");
-	scanf("%d", &numslots);		
-	
-	int i, j, k;
-	int checked[numplayers];
-	
-	for(i=0; i<slotsNumber; i++)
-	{
-		k = rand()%(numslots-1);
-		checked[i] = k;
-		strcpy(players.position[k], players[i].name);
-	}
-	
-	for(i=0; i<numslots-1; i++)
-	{
-		j=i+1;
-		while(j<numslots)
-		{
-			if(checked[i] == checked[j])
-			{
-				for(i=0; i<numslots; i++)
-				{
-					k = rand()%(numslots-1);
-					checked[i] = k;
-					strcpy(players.position[k], players[i].name);
-				}
-				i=-1, j=numslots; //return to start of all loops condition
-			}
-			else{
-				j++;
-			}
-		}
-	}
-	
-	
-
-}
-	
 void slotType(struct slot slots[])
 {
 	int i, j;
@@ -443,4 +440,3 @@ void makeMove(struct player players[], struct slot slots[])
 		printf("%s \t %s \t %d\n", &players[i].name, &players[i].player_type, &players[i].life_pts);
 	}
 }	
-	
