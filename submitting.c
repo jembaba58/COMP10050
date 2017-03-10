@@ -120,8 +120,6 @@ int main(void)
 		else if(move == 3)
 		{
 			// Ask for the number of the attacker to be specified.
-			printf("Which player will be the attacker: ");
-			scanf("%d", &attkr);
 			min = numSlots;
 
 			//Find the closest player(The player of the shortest distance in the array of slots).
