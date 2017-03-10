@@ -39,10 +39,10 @@ int main(void)
 	void pointsOgre(struct player players[]);
 	void pointsElf(struct player players[]);
 	void pointsWizard(struct player players[]);
-	createPlayers();
+	createPlayers(struct players[]);
 	allocatePlayers(struct player players[]);
 	slotsType(struct slot slots[]);
-	makeMove();
+	makeMove(struct player players[], struct slot slots[]);
 	
 	return 0;
 }
