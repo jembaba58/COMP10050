@@ -14,6 +14,7 @@ int abs(int a);
 void makeMove(struct player players[], struct slot slots[]);
 
 int numplayers, numslots;
+int checked[];
 
 struct players
 {
@@ -35,23 +36,23 @@ struct slot
 
 int main(void)
 {
-	void pointsHuman(struct player players[]);
-	void pointsOgre(struct player players[]);
-	void pointsElf(struct player players[]);
-	void pointsWizard(struct player players[]);
-	createPlayers(struct players[]);
-	allocatePlayers(struct player players[]);
-	slotsType(struct slot slots[]);
-	makeMove(struct player players[], struct slot slots[]);
+	pointsHuman();
+	pointsOgre();
+	pointsElf();
+	pointsWizard();
+	createPlayers();
+	allocatePlayers();
+	slotsType();
+	makeMove();
 	
 	return 0;
 }
 
 void pointsHuman(struct players[])
 {
+	int i;
 	int smartness, strength, skill, luck, dexterity;
 	int sum;
-	int numPlayers;
 	
 	for(i=0; i<numPlayers; i++)
 	{
@@ -87,6 +88,7 @@ void pointsHuman(struct players[])
 void pointsOgre(struct players[])
 {
 	int smartness, strength, skill = 0, luck, dexterity;
+	int i;
 	
 	for(i=0; i<numPlayers; i++)
 	{
@@ -96,6 +98,7 @@ void pointsOgre(struct players[])
 			players[i].dexterity = (rand()%80);
 			players[i].luck = (rand()%50);
 			players[i].smartness = (rand()%20);
+			players[i].skill = 0;
 			sum = players[i].luck + players[i].smartness;
 			
 			int check = 1;
@@ -119,6 +122,7 @@ void pointsOgre(struct players[])
 void pointsElf(struct players[])
 {
 	int smartness, strength, skill = 0, luck, dexterity;
+	int i;
 	
 	for(i=0; i<numPlayers; i++)
 	{
@@ -136,6 +140,7 @@ void pointsElf(struct players[])
 void pointsWizard(struct players[])
 {
 	int smartness, strength, skill, luck, dexterity;
+	int i;
 	
 	for(i=0; i<numPlayers; i++)
 	{
@@ -155,6 +160,7 @@ void createPlayers(struct players[])
 	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
 	scanf("%d", &numplayers);
 	
+	int i;
 	int invalid=0, invalid1=0;
 	while(invalid==0)
 	{
@@ -191,7 +197,7 @@ void allocatePlayers(struct players[]);
 	printf("Please select a number of slots (max 20):\n");
 	scanf("%d", &numslots);		
 	
-	int i, j;
+	int i, j, k;
 	int checked[numplayers];
 	
 	for(i=0; i<slotsNumber; i++)
@@ -253,9 +259,9 @@ void slotType(struct slot[])
 
 void makeMove(struct player players[], struct slot slots[])
 {	
-			int move, invalid2;
+	int move, invalid2;
 	int attackNumber, attackPlayer;
-	int checked[numplayers];
+	int checked[numplayers], checked1[numplayers];
 	int swap;
 	
 	for(gameEnd=0; i<numplayers; i++)
@@ -385,10 +391,12 @@ void makeMove(struct player players[], struct slot slots[])
 					printf("Would you like to attack %s (enter 1) or %s (enter 2) : ", players.position[checked1[0]], players.position[checked1[1]]);
 					scanf("%d", &attackNumber);
 					if(attackNumber == 1){
-						attackPlayer = checked1[0];
+						attackPlayer = 0;
+						printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 					}
 					else if(attackNumber == 2){
-						attackPlayer = checked1[1];
+						attackPlayer = 1;
+						printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 					}
 					else{
 						printf("Invalid"\n\n);
