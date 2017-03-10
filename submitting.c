@@ -19,7 +19,7 @@ struct player
 {
 	char name[20];
 	char player_type[10];
-	int life_pts = 100;
+	int life_pts;
 	int smartness;
 	int strength;
 	int skill;
@@ -50,7 +50,7 @@ int main(void)
 		{
 			while(invalid1==0)
 			{
-			for(i=0; i<numPlayers; i++)
+			for(i=0; i<numplayers; i++)
 			{
 				//For each playerNumber, we ask for the the type and name.
 				printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters) :\n", &i);
@@ -109,15 +109,17 @@ int main(void)
 		}
 	}
 	
+	for(i=0; i<numplayers; i++)
+	{
+		players.life_pts[i] = 100;
+	}
 	
-	
-	
-	pointsHuman();
-	pointsOgre();
-	pointsElf();
-	pointsWizard();
-	slotsType();
-	makeMove();
+	pointsHuman(player);
+	pointsOgre(player);
+	pointsElf(player);
+	pointsWizard(player);
+	slotsType(slot);
+	makeMove(player, slot);
 	
 	return 0;
 }
@@ -128,7 +130,7 @@ void pointsHuman(struct player players[])
 	int smartness, strength, skill, luck, dexterity;
 	int sum;
 	
-	for(i=0; i<numPlayers; i++)
+	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type ="Human")
 		{
@@ -164,7 +166,7 @@ void pointsOgre(struct player players[])
 	int smartness, strength, skill = 0, luck, dexterity;
 	int i;
 	
-	for(i=0; i<numPlayers; i++)
+	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type = "Ogre")
 		{
@@ -198,7 +200,7 @@ void pointsElf(struct player players[])
 	int smartness, strength, skill = 0, luck, dexterity;
 	int i;
 	
-	for(i=0; i<numPlayers; i++)
+	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type = "Elf")
 		{
@@ -216,7 +218,7 @@ void pointsWizard(struct player players[])
 	int smartness, strength, skill, luck, dexterity;
 	int i;
 	
-	for(i=0; i<numPlayers; i++)
+	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type = "Wizard")
 		{
@@ -435,7 +437,7 @@ void makeMove(struct player players[], struct slot slots[])
 			}
 		}
 	}
-	for(i=0; i < numPlayers; i++)
+	for(i=0; i < numplayers; i++)
 	{
 		printf("%s \t %s \t %d\n", &players[i].name, &players[i].player_type, &players[i].life_pts);
 	}
