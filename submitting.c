@@ -40,7 +40,6 @@ int main(void)
 	
 	for(i=0; i<numplayers; i++)
 	{
-		
 		// Give the option to move players to adjacent slots.
 		printf("Player %d is in slot type : %s\n", i+1, slots[players[i].position]);
 		
@@ -64,12 +63,12 @@ int main(void)
 		
 		if(move == 1)
 		{
-			
+			players[i].position = players[i].position + 1;
 		}
 		
 		else if(move == 2)
 		{
-			
+			players[i].position = players[i].position - 1;
 		}
 		
 		else if(move == 3)
