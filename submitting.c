@@ -119,7 +119,40 @@ int main(void)
 		
 		else if(move == 3)
 		{
-			
+			// Ask for the number of the attacker to be specified.
+			printf("Which player will be the attacker: ");
+			scanf("%d", &attkr);
+			min = numSlots;
+
+			//Find the closest player(The player of the shortest distance in the array of slots).
+			for(i=0; i<numPlayers; i++)
+			{
+				//Check distance for each player in turn.
+				if (min > abs(players[i].position - players[attkr].position))
+				{
+					min = abs(players[i].position - players[attkr].position);
+					attkd = players[i].position;
+
+				}
+				// Atacked player now identified
+			}
+
+			if(players[attkd].strength <= 70)
+			{
+				players[attkd].life_pts -= players[attkd].strength*0.5;
+			}
+
+			else if(players[attkd].strength > 70)
+			{
+				players[attkd].life_pts -= players[attkd].strength*0.3;
+			}
+
+			printf("Current player details are:\n");
+			printf("Player Name \t Player Type \t Life Points");
+			for(i=0; i < numPlayers; i++)
+			{
+				printf("%s \t %s \t %d", &players[i].name, &players[i].player_type, &players[i].life_pts);
+			}
 		}
 		
 		else
