@@ -36,133 +36,131 @@ int main(void)
 {
 	createPlayers();
 	
-	int move;
+	int move, invalid2;
 	
-	for(i=0; i<numplayers; i++)
+	for(gameEnd=0; i<numplayers; i++)
 	{
-		// Give the option to move players to adjacent slots.
-		printf("Player %d is in slot type : %s\n", i+1, slots[players[i].position]);
-		
-		if(checked[i] == 0)
+		invalid2 = 0;
+		while(invalid2 = 0)
 		{
-			printf("Next slot is of type %s (you are in the first slot)", slots[players[i].position + 1]);
-			printf("Player %d: Enter 1 to move to the next slot, or 3 to attack the closest player.\n", i+1);
-		}
-		else if(checked[i] == 19)
-		{
-			printf("Previous slot is of type %s (you are in the final slot)", slots[players[i].position - 1]);
-			printf("Player %d: Enter 2 to move to the previous slot, or 3 to attack the closest player.\n", i+1);
-		}
-		else
-		{
-			printf("Previous slot is of type %s and next slot is of type %s", slots[players[i].position - 1], slots[players[i].position + 1]);
-			printf("Player %d: Enter 1 to move to the next slot, 2 to move to the previous slot, or 3 to attack the closest player.\n", i+1);
-		}
-		
-		scanf("%d", &move);
-		
-		if(move == 1)
-		{
-			players[i].position = players[i].position + 1;
+			// Give the option to move players to adjacent slots.
+			printf("Player %d is in slot type : %s\n", gameEnd+1, slots[players[gameEnd].position]);
 			
-			if(slots[players[i].position].type == "Hill")
+			if(checked[gameEnd] == 0)
 			{
-				if(players[i].dexterity < 50)
-				{
-					players[i].strength -=10;
-				}
-				else if(players[i].dexterity >= 60)
-				{
-					players[i].strength +=10;
-				}
+				printf("Next slot is of type %s (you are in the first slot)", slots[players[gameEnd].position + 1]);
+				printf("Player %d: Enter 1 to move to the next slot, or 3 to attack the closest player.\n", i+1);
 			}
-			else if(slots[players[i].position].type == "City")
+			else if(checked[gameEnd] == 19)
 			{
-				if(players[i].smartness > 60)
-				{
-					players[i].skill +=10;
-				}
-				else if(players[i].smartness <= 50)
-				{
-					players[i].dexterity -=10;
-				}
+				printf("Previous slot is of type %s (you are in the final slot)", slots[players[gameEnd].position - 1]);
+				printf("Player %d: Enter 2 to move to the previous slot, or 3 to attack the closest player.\n", gameEnd+1);
 			}
-		}
-		
-		else if(move == 2)
-		{
-			players[i].position = players[i].position - 1;
+			else
+			{
+				printf("Previous slot is of type %s and next slot is of type %s", slots[players[gameEnd].position - 1], slots[players[gameEnd].position + 1]);
+				printf("Player %d: Enter 1 to move to the next slot, 2 to move to the previous slot, or 3 to attack the closest player.\n", gameEnd+1);
+			}
 			
-			if(slots[players[i].position].type == "Hill")
-			{
-				if(players[i].dexterity < 50)
-				{
-					players[i].strength -=10;
-				}
-				else if(players[i].dexterity >= 60)
-				{
-					players[i].strength +=10;
-				}
-			}
-			else if(slots[players[i].position].type == "City")
-			{
-				if(players[i].smartness > 60)
-				{
-					players[i].skill +=10;
-				}
-				else if(players[i].smartness <= 50)
-				{
-					players[i].dexterity -=10;
-				}
-			}
-		}
-		
-		else if(move == 3)
-		{
-			// Ask for the number of the attacker to be specified.
-			min = numSlots;
-
-			//Find the closest player(The player of the shortest distance in the array of slots).
-			for(i=0; i<numPlayers; i++)
-			{
-				//Check distance for each player in turn.
-				if (min > abs(players[i].position - players[attkr].position))
-				{
-					min = abs(players[i].position - players[attkr].position);
-					attkd = players[i].position;
-
-				}
-				// Atacked player now identified
-			}
-
-			if(players[attkd].strength <= 70)
-			{
-				players[attkd].life_pts -= players[attkd].strength*0.5;
-			}
-
-			else if(players[attkd].strength > 70)
-			{
-				players[attkd].life_pts -= players[attkd].strength*0.3;
-			}
-
-			printf("Current player details are:\n");
-			printf("Player Name \t Player Type \t Life Points");
-			for(i=0; i < numPlayers; i++)
-			{
-				printf("%s \t %s \t %d", &players[i].name, &players[i].player_type, &players[i].life_pts);
-			}
-		}
-		
-		else
-		{
+			scanf("%d", &move);
 			
+			if(move == 1)
+			{
+				players[gameEnd].position = players[gameEnd].position + 1;
+				
+				if(slots[players[gameEnd].position].type == "Hill")
+				{
+					if(players[gameEnd].dexterity < 50)
+					{
+						players[gameEnd].strength -=10;
+					}
+					else if(players[gameEnd].dexterity >= 60)
+					{
+						players[gameEnd].strength +=10;
+					}
+				}
+				else if(slots[players[gameEnd].position].type == "City")
+				{
+					if(players[gameEnd].smartness > 60)
+					{
+						players[gameEnd].skill +=10;
+						}
+					else if(players[gameEnd].smartness <= 50)
+					{
+						players[gameEnd].dexterity -=10;
+					}
+				}
+				invalid2 = 1;
+			}
+			
+			else if(move == 2)
+			{
+				players[gameEnd].position = players[i].position - 1;
+				
+				if(slots[players[gameEnd].position].type == "Hill")
+				{
+					if(players[gameEnd].dexterity < 50)
+					{
+						players[gameEnd].strength -=10;
+					}
+					else if(players[gameEnd].dexterity >= 60)
+					{
+						players[gameEnd].strength +=10;
+					}
+				}
+				else if(slots[players[gameEnd].position].type == "City")
+				{
+					if(players[gameEnd].smartness > 60)
+					{
+						players[gameEnd].skill +=10;
+					}
+					else if(players[gameEnd].smartness <= 50)
+					{
+						players[gameEnd].dexterity -=10;
+					}
+				}
+				invalid2 = 0;
+			}	
+				
+			else if(move == 3)
+			{
+				// Ask for the number of the attacker to be specified.
+				min = numSlots;
+				attkr = gameEnd;
+	
+				//Find the closest player(The player of the shortest distance in the array of slots).
+				for(i=0; i<numPlayers; i++)
+				{
+					//Check distance for each player in turn.
+					if (min > abs(players[i].position - players[attkr].position))
+					{
+						min = abs(players[i].position - players[attkr].position);
+						attkd = players[i].position;
+	
+					}
+					// Atacked player now identified
+				}
+	
+				if(players[attkd].strength <= 70)
+				{
+					players[attkd].life_pts -= players[attkd].strength*0.5;
+				}
+	
+				else if(players[attkd].strength > 70)
+				{
+					players[attkd].life_pts -= players[attkd].strength*0.3;
+				}
+				invalid2 = 1;
+			}
+			else
+			{
+				printf("Invalid choice\n\n");
+			}
 		}
-	
-	
-	
-	
-	
-	
+	}
+	for(i=0; i < numPlayers; i++)
+	{
+		printf("%s \t %s \t %d", &players[i].name, &players[i].player_type, &players[i].life_pts);
 	}
 	
 	return 0;
@@ -347,25 +345,28 @@ void allocatePlayers(struct players[]);
 
 }
 	
-void slotType(struct slot slots[], int numSlots)
+void slotType(struct slot[])
 {
 	int i, j;
-
-	for (i=0; i < numSlots; i++)
+	
+	for (i=0; i < slotsnum; i++).
 	{
-        j = 1 + rand() % 3; //j selects a random position between 1 and 3.
-	}
-
-	if(j==1){
-		strcpy(slots[i].type , "Level Ground");
-	}
-
-	if(j==2){
-		strcpy(slots[i].type , "Hill");
-	}
-
-	if(j==3){
-		strcpy(slots[i].type , "City");
+		j = 1 + rand() % 3; //j selects a random position between 1 and 3.
+	
+		if(j==1)
+		{
+			slots.type[i] = "Level Ground";
+		}
+	
+		else if(j==2)
+		{
+			slots.type[i] = "Hill";
+		}
+	
+		else
+		{
+			slots.type[i] = "City";
+		}
 	}
 }	
 
