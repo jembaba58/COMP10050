@@ -43,19 +43,20 @@ int main(void)
 		
 		// Give the option to move players to adjacent slots.
 		printf("Player %d is in slot type : %s\n", i+1, slots[players[i].position]);
-		//Displaying the types of adjacent slots.
-		printf("Previous slot is of type %s and next slot is of type %s", slots[players[i].position - 1], slots[players[i].position + 1]);
 		
 		if(checked[i] == 0)
 		{
+			printf("Next slot is of type %s (you are in the first slot)", slots[players[i].position + 1]);
 			printf("Player %d: Enter 1 to move to the next slot, or 3 to attack the closest player.\n", i+1);
 		}
 		else if(checked[i] == 19)
 		{
+			printf("Previous slot is of type %s (you are in the final slot)", slots[players[i].position - 1]);
 			printf("Player %d: Enter 2 to move to the previous slot, or 3 to attack the closest player.\n", i+1);
 		}
 		else
 		{
+			printf("Previous slot is of type %s and next slot is of type %s", slots[players[i].position - 1], slots[players[i].position + 1]);
 			printf("Player %d: Enter 1 to move to the next slot, 2 to move to the previous slot, or 3 to attack the closest player.\n", i+1);
 		}
 		
