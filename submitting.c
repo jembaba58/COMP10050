@@ -3,9 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-int numplayers, numslots;
-int checked[];
-
 struct player
 {
 	char name[20];
@@ -16,7 +13,6 @@ struct player
 	int skill;
 	int luck;
 	int dexterity;
-	int position;
 };
 
 struct slot
@@ -33,15 +29,18 @@ void slotType(struct slot slots[]);
 int abs(int a);
 void makeMove(struct player players[], struct slot slots[]);
 
+int numplayers, numslots;
+int checked[];
+
 int main(void)
 {
 	srand(time(NULL));
-
-	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : ");
+	
+	printf("Please enter the number of players you would like to enter into the game (Maximum 6) : "); 
 	scanf("%d", &numplayers);
-
+	
 	struct player players[numplayers];
-
+	
 	int i;
 	int invalid=0, invalid1=0;
 	while(invalid==0)
@@ -50,51 +49,50 @@ int main(void)
 		{
 			while(invalid1==0)
 			{
-                for(i=0; i<numplayers; i++)
-                {
-                    //For each playerNumber, we ask for the the type and name.
-                    printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters) :\n", &i);
-                    scanf("%s\n", &players[i].name, &players[i].player_type);
-                    invalid=1;
-
-                    if(players[i].player_type=="elf" || players[i].player_type=="human" || players[i].player_type=="ogre" || players[i].player_type=="wizard")
-                    {
-                        invalid1 = 1;
-                    }
-                    else
-                    {
-                        printf("Invalid player type.\n");
-                    }
-                }
-            }
-        }
-
+				for(i=0; i<numplayers; i++)
+				{
+					//For each playerNumber, we ask for the the type and name.
+					printf("Please enter the name and player type (elf, human, ogre or wizard) for player %d (in lowercase letters) :\n", &i);
+					scanf("%s\n", &players[i].name, &players[i].player_type);
+					invalid=1;
+				
+					if(players[i].player_type=="elf" || players[i].player_type=="human" || players[i].player_type=="ogre" || players[i].player_type=="wizard");
+					{
+						invalid1 = 1;
+					}	
+					else
+					{
+						printf("Invalid player type.\n");
+					}
+				}					
+			}
+		}
 		else
 		{
 			printf("Invalid number of players\n");
 		}
 	}
-
-
+	
 	printf("Please select a number of slots (max 20):\n");
 	scanf("%d", &numslots);
 
 	struct slot slots[numslots];
-
+	int position[numSlots];	
+	
 	int j, k;
 	int checked[numplayers];
-
-	for(i=0; i<numslots; i++)
+	
+	for(i=0; i<numplayers; i++)
 	{
 		k = rand()%(numslots-1);
 		checked[i] = k;
-		strcpy(players.position[k], players[i].name);
+		position[i] = k;
 	}
-
-	for(i=0; i<numslots-1; i++)
+	
+	for(i=0; i<numplayers-1; i++)
 	{
 		j=i+1;
-		while(j<numslots)
+		while(j<numplayers)
 		{
 			if(checked[i] == checked[j])
 			{
@@ -102,7 +100,6 @@ int main(void)
 				{
 					k = rand()%(numslots-1);
 					checked[i] = k;
-					strcpy(players.position[k], players[i].name);
 				}
 				i=-1, j=numslots; //return to start of all loops condition
 			}
@@ -111,19 +108,19 @@ int main(void)
 			}
 		}
 	}
-
+	
 	for(i=0; i<numplayers; i++)
 	{
 		players.life_pts[i] = 100;
 	}
-
+	
 	pointsHuman(player);
 	pointsOgre(player);
 	pointsElf(player);
 	pointsWizard(player);
 	slotsType(slot);
 	makeMove(player, slot);
-
+	
 	return 0;
 }
 
@@ -132,7 +129,7 @@ void pointsHuman(struct player players[])
 	int i;
 	int smartness, strength, skill, luck, dexterity;
 	int sum;
-
+	
 	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type ="Human")
@@ -143,7 +140,7 @@ void pointsHuman(struct player players[])
 			players[i].dexterity = 1 +(rand()%100);
 			players[i].dexterity = 1 +(rand()%100);
 			sum = players[i].smartness + players[i].strength + players[i].skill + players[i].luck + players[i].dexterity;
-
+			
 			int check = 1;
 			while(check == 1)
 			{
@@ -161,14 +158,14 @@ void pointsHuman(struct player players[])
 			}
 		}
 	}
-
+	
 }
 
 void pointsOgre(struct player players[])
 {
 	int smartness, strength, skill = 0, luck, dexterity;
 	int i;
-
+	
 	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type = "Ogre")
@@ -179,7 +176,7 @@ void pointsOgre(struct player players[])
 			players[i].smartness = (rand()%20);
 			players[i].skill = 0;
 			sum = players[i].luck + players[i].smartness;
-
+			
 			int check = 1;
 			while(check == 1)
 			{
@@ -194,15 +191,15 @@ void pointsOgre(struct player players[])
 			}
 		}
 	}
-
-
+	
+	
 }
 
 void pointsElf(struct player players[])
 {
 	int smartness, strength, skill = 0, luck, dexterity;
 	int i;
-
+	
 	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type = "Elf")
@@ -213,14 +210,14 @@ void pointsElf(struct player players[])
 			players[i].skill = 50 +(rand()%30);
 		}
 	}
-
+	
 }
 
 void pointsWizard(struct player players[])
 {
 	int smartness, strength, skill, luck, dexterity;
 	int i;
-
+	
 	for(i=0; i<numplayers; i++)
 	{
 		if(players[i].player_type = "Wizard")
@@ -231,41 +228,41 @@ void pointsWizard(struct player players[])
 			players[i].skill = 80 +(rand()%20);
 		}
 	}
-
+		
 }
 
 void slotType(struct slot slots[])
 {
 	int i, j;
-
+	
 	for (i=0; i < slotsnum; i++).
 	{
 		j = 1 + rand() % 3; //j selects a random position between 1 and 3.
-
+	
 		if(j==1)
 		{
 			slots.type[i] = "Level Ground";
 		}
-
+	
 		else if(j==2)
 		{
 			slots.type[i] = "Hill";
 		}
-
+	
 		else
 		{
 			slots.type[i] = "City";
 		}
 	}
-}
+}	
 
 void makeMove(struct player players[], struct slot slots[])
-{
+{	
 	int move, invalid2, invalid3;
 	int attackNumber, attackPlayer;
-	int checked[numplayers], checked1[numplayers];
-	int swap;
-
+	int checked1[numplayers];
+	int swap, num, num1;
+	
 	for(gameEnd=0; i<numplayers; i++)
 	{
 		invalid2 = 0;
@@ -273,13 +270,13 @@ void makeMove(struct player players[], struct slot slots[])
 		{
 			// Give the option to move players to adjacent slots.
 			printf("Player %d is in slot type : %s\n", gameEnd+1, slots[players[gameEnd].position]);
-
-			if(checked[gameEnd] == 0)
+			
+			if(players[gameEnd].position == 0)
 			{
 				printf("Next slot is of type %s (you are in the first slot)", slots[players[gameEnd].position + 1]);
 				printf("Player %d: Enter 1 to move to the next slot, or 3 to attack the closest player.\n", i+1);
 			}
-			else if(checked[gameEnd] == 19)
+			else if(players[gameEnd].position == 19)
 			{
 				printf("Previous slot is of type %s (you are in the final slot)", slots[players[gameEnd].position - 1]);
 				printf("Player %d: Enter 2 to move to the previous slot, or 3 to attack the closest player.\n", gameEnd+1);
@@ -289,13 +286,13 @@ void makeMove(struct player players[], struct slot slots[])
 				printf("Previous slot is of type %s and next slot is of type %s", slots[players[gameEnd].position - 1], slots[players[gameEnd].position + 1]);
 				printf("Player %d: Enter 1 to move to the next slot, 2 to move to the previous slot, or 3 to attack the closest player.\n", gameEnd+1);
 			}
-
+			
 			scanf("%d", &move);
-
+			
 			if(move == 1)
 			{
 				players[gameEnd].position = players[gameEnd].position + 1;
-
+				
 				if(slots[players[gameEnd].position].type == "Hill")
 				{
 					if(players[gameEnd].dexterity < 50)
@@ -320,11 +317,11 @@ void makeMove(struct player players[], struct slot slots[])
 				}
 				invalid2 = 1;
 			}
-
+			
 			else if(move == 2)
 			{
 				players[gameEnd].position = players[i].position - 1;
-
+				
 				if(slots[players[gameEnd].position].type == "Hill")
 				{
 					if(players[gameEnd].dexterity < 50)
@@ -348,33 +345,33 @@ void makeMove(struct player players[], struct slot slots[])
 					}
 				}
 				invalid2 = 0;
-			}
-
+			}	
+				
 			else if(move == 3)
 			{
 				attkr = gameEnd;
-
+	
 				//Find the closest player(The player of the shortest distance in the array of slots).
 				for(i=0; i<numplayers-1; i++)
 				{
-					if(checked[gameEnd] > checked[i])
+					if(players[gameEnd].position > players[i].position)
 					{
-						checkArr[i] = checked[gameEnd] - checked[i];
+						checkArr[i] = players[gameEnd].position - players[gameEnd].position;
 					}
 					else if(checked[counter] < checked[i])
 					{
-						checkArr[i] = checked[i] - checked[counter];
+						checkArr[i] = players[gameEnd].position - players[gameEnd].position;	
 					}
 					else
 					{
-						checkArr[i] = 999;
+						checkArr[i] = 0;
 					}
 				}
-
+			
 				for(i=0; i<numplayers; i++){
-					checked1[i] = checked[i];
+					checked1[i] = players[i].position;
 				}
-
+			
 				check = 0;
 				for(i=0; i<numplayers-1; i++){
 					for(j=i+1; j<numplayers; j++){
@@ -385,24 +382,36 @@ void makeMove(struct player players[], struct slot slots[])
 							swap = checked1[i];
 							checked1[i] = checked1[j];
 							checked1[j] = swap;
-						}
-					}
+						}	
+					}	
 				}
-
+				
 				invalid3 = 0;
 				while(invalid3 == 0)
 				{
-					if(checkArr[0] == checkArr[1]){
-						printf("Would you like to attack %s (enter 1) or %s (enter 2) : ", players.position[checked1[0]], players.position[checked1[1]]);
+					for(d=0; d<numplayers; d++)
+					{
+						if(checked1[1] == players[d].position)
+						{
+							num = d;
+						}
+					}
+					for(d=0; d<numplayers; d++)
+					{
+						if(checked1[1] == players[d].position)
+						{
+							num1 = d;
+						}
+					}
+					if(checkArr[1] == checkArr[2]){
+						printf("Would you like to attack %s (enter 1) or %s (enter 2) : ", players[checked1[num]].name, players[checked1[num1]].name);
 						scanf("%d", &attackNumber);
 						if(attackNumber == 1){
-							attackPlayer = 1;
-							printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
+							printf("You have attacked %s.\n\n", players[checked1[num]].name);
 							invalid3 = 1;
 						}
 						else if(attackNumber == 2){
-							attackPlayer = 2;
-							printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
+							printf("You have attacked %s.\n\n", players[checked1[num1]].name);
 							invalid3 = 1;
 						}
 						else{
@@ -411,23 +420,23 @@ void makeMove(struct player players[], struct slot slots[])
 					}
 					else{
 						attackPlayer = 1;
-						printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
+						printf("You have attacked %s.\n\n", players[checked1[num]].name);
 					}
 				}
-
+				
 				for(d=0; d<numplayers; d++)
 				{
-					if(checked1[attacked] == checked[d])
+					if(checked1[attacked] == players[d].position)
 					{
 						num = d;
 					}
 				}
-
+				
 				if(players[num].strength <= 70)
 				{
 					players[num].life_pts -= players[num].strength*0.5;
 				}
-
+	
 				else if(players[num].strength > 70)
 				{
 					players[num].life_pts -= players[num].strength*0.3;
@@ -444,4 +453,4 @@ void makeMove(struct player players[], struct slot slots[])
 	{
 		printf("%s \t %s \t %d\n", &players[i].name, &players[i].player_type, &players[i].life_pts);
 	}
-}otsNumber; i++)	
+}	
