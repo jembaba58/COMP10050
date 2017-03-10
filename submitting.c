@@ -35,9 +35,14 @@ struct slot
 
 int main(void)
 {
+	pointsHuman();
+	pointsOgre();
+	pointsElf();
+	pointsWizard();
 	createPlayers();
-	
-
+	allocatePlayers();
+	slotsType();
+	makeMove();
 	
 	return 0;
 }
@@ -246,7 +251,7 @@ void slotType(struct slot[])
 	}
 }	
 
-void makeMove(struct player players[], struct slot slots[]);
+void makeMove(struct player players[], struct slot slots[])
 {	
 			int move, invalid2;
 	int attackNumber, attackPlayer;
@@ -415,43 +420,4 @@ void makeMove(struct player players[], struct slot slots[]);
 		printf("%s \t %s \t %d", &players[i].name, &players[i].player_type, &players[i].life_pts);
 	}
 }	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
