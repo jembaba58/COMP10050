@@ -347,28 +347,25 @@ void allocatePlayers(struct players[]);
 
 }
 	
-void slotType(struct slot[])
+void slotType(struct slot slots[], int numSlots)
 {
 	int i, j;
-	
-	for (i=0; i < slotsnum; i++).
+
+	for (i=0; i < numSlots; i++)
 	{
-		j = 1 + rand() % 3; //j selects a random position between 1 and 3.
-	
-		if(j==1)
-		{
-			slots.type[i] = "Level Ground";
-		}
-	
-		else if(j==2)
-		{
-			slots.type[i] = "Hill";
-		}
-	
-		else
-		{
-			slots.type[i] = "City";
-		}
+        j = 1 + rand() % 3; //j selects a random position between 1 and 3.
+	}
+
+	if(j==1){
+		strcpy(slots[i].type , "Level Ground");
+	}
+
+	if(j==2){
+		strcpy(slots[i].type , "Hill");
+	}
+
+	if(j==3){
+		strcpy(slots[i].type , "City");
 	}
 }	
 
