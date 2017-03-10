@@ -394,12 +394,12 @@ void makeMove(struct player players[], struct slot slots[])
 						printf("Would you like to attack %s (enter 1) or %s (enter 2) : ", players.position[checked1[0]], players.position[checked1[1]]);
 						scanf("%d", &attackNumber);
 						if(attackNumber == 1){
-							attackPlayer = 0;
+							attackPlayer = 1;
 							printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 							invalid3 = 1;
 						}
 						else if(attackNumber == 2){
-							attackPlayer = 1;
+							attackPlayer = 2;
 							printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 							invalid3 = 1;
 						}
@@ -408,7 +408,7 @@ void makeMove(struct player players[], struct slot slots[])
 						}
 					}
 					else{
-						attackPlayer = 0;
+						attackPlayer = 1;
 						printf("You have attacked %s.\n\n", player.position[checked1[attackPlayer]]);
 					}
 				}
