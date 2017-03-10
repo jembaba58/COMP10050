@@ -37,6 +37,9 @@ int main(void)
 	createPlayers();
 	
 	int move, invalid2;
+	int attackNumber, attackPlayer;
+	int checked[numplayers];
+	int swap;
 	
 	for(gameEnd=0; i<numplayers; i++)
 	{
@@ -124,23 +127,60 @@ int main(void)
 				
 			else if(move == 3)
 			{
-				// Ask for the number of the attacker to be specified.
-				min = numSlots;
 				attkr = gameEnd;
 	
 				//Find the closest player(The player of the shortest distance in the array of slots).
-				for(i=0; i<numPlayers; i++)
+				for(i=0; i<numplayers-1; i++)
 				{
-					//Check distance for each player in turn.
-					if (min > abs(players[i].position - players[attkr].position))
+					if(checked[gameEnd] > checked[i])
 					{
-						min = abs(players[i].position - players[attkr].position);
-						attkd = players[i].position;
-	
+						checkArr[i] = checked[gameEnd] - checked[i];
 					}
-					// Atacked player now identified
+					else if(checked[counter] < checked[i])
+					{
+						checkArr[i] = checked[i] - checked[counter];	
+					}
+					else
+					{
+						checkArr[i] = 999;
+					}
 				}
-	
+			
+				for(i=0; i<numplayers; i++){
+					checked1[i] = checked[i];
+				}
+			
+				check = 0;
+				for(i=0; i<numplayers-1; i++){
+					for(j=i+1; j<numplayers; j++){
+						if(checkArr[i] > checkArr[j]){
+							swap = checkArr[i];
+							checkArr[i] = checkArr[j];
+							checkArr[j] = swap;
+							swap = checked1[i];
+							checked1[i] = checked1[j];
+							checked1[j] = swap;
+						}	
+					}	
+				}
+			
+				if(checkArr[0] == checkArr[1]){
+					printf("Would you like to attack %s (enter 1) or %s (enter 2) : ", players.position[checked1[0]], players.position[checked1[1]]);
+					scanf("%d", &attackNumber);
+					if(attackNumber == 1){
+						attackPlayer = checked1[0];
+					}
+					else if(attackNumber == 2){
+						attackPlayer = checked1[1];
+					}
+					else{
+						printf("Invalid"\n\n);
+					}
+				}
+				else{
+					printf("You have attacked %s.\n\n", player.position[checked1[0]]);
+				}
+		
 				if(players[attkd].strength <= 70)
 				{
 					players[attkd].life_pts -= players[attkd].strength*0.5;
