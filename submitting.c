@@ -35,13 +35,13 @@ struct slot
 
 int main(void)
 {
-	pointsHuman();
-	pointsOgre();
-	pointsElf();
-	pointsWizard();
+	void pointsHuman(struct player players[]);
+	void pointsOgre(struct player players[]);
+	void pointsElf(struct player players[]);
+	void pointsWizard(struct player players[]);
 	createPlayers();
-	allocatePlayers();
-	slotsType();
+	allocatePlayers(struct player players[]);
+	slotsType(struct slot slots[]);
 	makeMove();
 	
 	return 0;
