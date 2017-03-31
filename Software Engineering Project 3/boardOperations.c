@@ -7,17 +7,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <time.h>
+#include <stdbool.h>
 
-void createBoard(int boardSize, struct slot **upLeft&, struct slot **upRight, struct slot **downLeft&, struct slot **downRight)
+void createBoard(int boardSize, struct slot **upLeft, struct slot **upRight, struct slot **downLeft, struct slot **downRight)
 {
 	struct slot **board = malloc(boardSize *sizeof(struct slot));
 
 	int i, j;
 
 	for(i=0; i<boardSize; i++){
-		board[i] = malloc(boardSize * sizeof(structslot));
+		board[i] = malloc(boardSize * sizeof(struct slot));
 	}
 
 	for(j=0; j<boardSize; j++){
