@@ -1,3 +1,10 @@
+/*
+ * userInteraction.c
+ *
+ *  Created on: 31 Mar 2017
+ *      Author: vikin
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "crossfireOperations.h"
@@ -11,7 +18,8 @@ int getBoardSize()
 	return boardSize;
 }
 
-void getDesiredElement(int boardSize, int * row, int * col){
+void getDesiredElement(int boardSize, int *row, int *col)
+{
 	printf("Please enter the column and the Row of the desired slot \n");
 	printf("Note that size of the board is %d\n", boardSize);
 
