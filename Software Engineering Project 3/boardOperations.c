@@ -17,7 +17,7 @@ void createBoard(int boardSize, struct slot **upLeft, struct slot **upRight, str
 	int i, j;
 
 	for(i=0; i<boardSize; i++){
-		board[i] = malloc(boardSize * sizeof(struct slot));
+		board[i] = malloc(boardSize *sizeof(struct slot));
 	}
 
 	for(j=0; j<boardSize; j++){
@@ -67,10 +67,10 @@ void createBoard(int boardSize, struct slot **upLeft, struct slot **upRight, str
 	*downRight = &board[boardSize -1][boardSize -1];
 }
 
-void reachDesiredElement(int row, int column, struct slot * initialSlot)
+void reachDesiredElement(int row, int column, struct slot *initialSlot)
 {
 	bool found = false;
-	struct slot * currentSlot = initialSlot;
+	struct slot *currentSlot = initialSlot;
 
 	printf("Initial slot (%d, %d) -> \n",initialSlot->row,initialSlot->column);
 
