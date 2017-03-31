@@ -9,15 +9,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-
-struct slot{
-	int row;
-	int column;
-	struct slot *left;
-	struct slot *right;
-	struct slot *up;
-	struct slot *down;
-}slot;
+#include 'crossfireOperations.h'
 
 int main(void)
 {
